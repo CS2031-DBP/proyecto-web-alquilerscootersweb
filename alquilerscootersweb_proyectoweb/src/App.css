@@ -1,42 +1,92 @@
+/* Estilo general */
+body, html {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor principal */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+/* NavBar */
+.MuiAppBar-root {
+  background-color: #1976d2; /* Color de fondo azul */
+}
+
+.MuiToolbar-root {
+  display: flex;
+  justify-content: space-between;
+}
+
+.MuiTypography-h6 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.MuiButton-root {
+  color: #ffffff;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Estilo del formulario de Login */
+form {
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form div {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #bbbbbb;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #333333;
+  color: #ffffff;
+  font-size: 1rem;
 }
 
-.card {
-  padding: 2em;
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #1976d2;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
+button[type="submit"]:hover {
+  background-color: #115293;
 }
