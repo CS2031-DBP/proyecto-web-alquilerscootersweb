@@ -1,26 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { fetchRegister } from '../services/api';
 
-const Register = () =>{
+const Register = () => {
     const [email, setEmail] = useState('');
-    const [full_name, setFull_name] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
+    const [phone, setPhone] = useState('');
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
-            const response = await fetchRegister({email,full_name,password,username});
+        try {
+            const response = await fetchRegister({
+                email,
+                name,
+                password,
+                phone,
+                role: 'USER' // Asignamos el rol directamente
+            });
             alert('Register successful');
             console.log(response);
-        }
-        catch(error){
+        } catch (error) {
             console.error('Register failed', error);
             alert('Register failed');
         }
     }
 
-    return(
+    return (
         <form onSubmit={handleSubmit}>
             <div>Register</div>
             <label htmlFor='email'>Email:
@@ -31,16 +36,16 @@ const Register = () =>{
                     required
                 />
             </label>
-            <br/>
-            <label htmlFor='full_name'>Full Name:
+            <br />
+            <label htmlFor='name'>Full Name:
                 <input
                     type='text'
-                    value={full_name}
-                    onChange={(e) => setFull_name(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                 />
             </label>
-            <br/>
+            <br />
             <label htmlFor='password'>Password:
                 <input
                     type='password'
@@ -49,17 +54,17 @@ const Register = () =>{
                     required
                 />
             </label>
-            <br/>
-            <label htmlFor='username'>Username:
+            <br />
+            <label htmlFor='phone'>Phone:
                 <input
                     type='text'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     required
                 />
             </label>
-            <br/>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <br />
+            <button type="submit">Submit</button>
         </form>
     );
 }
