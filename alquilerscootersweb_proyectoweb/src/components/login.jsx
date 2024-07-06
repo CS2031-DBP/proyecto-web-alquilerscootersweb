@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { fetchLogin } from '../services/api';
 
-const Login = ({ onLogin }) => {
+const Login = () => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetchLogin({ password, username });
+            const response = await fetchLogin({ email, password });
             alert('Login successful');
-            onLogin(response.access_token);
+            console.log(response);
         } catch (error) {
             console.error('Login failed', error);
             alert('Login failed');
@@ -20,11 +20,11 @@ const Login = ({ onLogin }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>Login</div>
-            <label htmlFor='username'>Username:
+            <label htmlFor='email'>Email:
                 <input
-                    type='text'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    type='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
             </label>
