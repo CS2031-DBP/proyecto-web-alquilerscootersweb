@@ -46,3 +46,12 @@ export const updateUserProfile = async (body) => {
     });
     return response.data;
 }
+
+export const fetchTripHistory = async () => {
+    const response = await axios.get(`${URL}/user/trips`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+};

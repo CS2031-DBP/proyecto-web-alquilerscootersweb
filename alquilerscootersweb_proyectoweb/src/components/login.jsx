@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { fetchLogin } from '../services/api';
 
-const Login = () =>{
+const Login = ({ onLogin }) => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
-            const response = await fetchLogin({password,username});
+        try {
+            const response = await fetchLogin({ password, username });
             alert('Login successful');
-            console.log(response);
-        }
-        catch(error){
+            onLogin(response.access_token);
+        } catch (error) {
             console.error('Login failed', error);
             alert('Login failed');
         }
     }
 
-    return(
+    return (
         <form onSubmit={handleSubmit}>
             <div>Login</div>
             <label htmlFor='username'>Username:
@@ -29,7 +28,7 @@ const Login = () =>{
                     required
                 />
             </label>
-            <br/>
+            <br />
             <label htmlFor='password'>Password:
                 <input
                     type='password'
@@ -38,8 +37,8 @@ const Login = () =>{
                     required
                 />
             </label>
-            <br/>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <br />
+            <button type="submit">Submit</button>
         </form>
     );
 }
