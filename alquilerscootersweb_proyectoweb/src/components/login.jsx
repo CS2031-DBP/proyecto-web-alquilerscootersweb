@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../services/api';
 
-const Login = () => {
-    const [email, setEmail] = useState('');
+const Login = ({ onLogin }) => {
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetchLogin({ email, password });
+            const response = await fetchLogin({ password, email});
             alert('Login successful');
-            console.log(response);
+            onLogin(response.access_token);
+            navigate('/scooters');  // Redirigir a ScooterList después del inicio de sesión exitoso
         } catch (error) {
             console.error('Login failed', error);
             alert('Login failed');
@@ -28,7 +31,7 @@ const Login = () => {
                     required
                 />
             </label>
-            <br />
+            <br/>
             <label htmlFor='password'>Password:
                 <input
                     type='password'
@@ -37,7 +40,7 @@ const Login = () => {
                     required
                 />
             </label>
-            <br />
+            <br/>
             <button type="submit">Submit</button>
         </form>
     );
