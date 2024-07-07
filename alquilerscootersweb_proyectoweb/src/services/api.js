@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// Link to deployed backend
 const URL = "http://localhost:8080";
 
 function saveToken(token) {
@@ -8,25 +7,22 @@ function saveToken(token) {
     localStorage.setItem('token', token);
 }
 
-
-export const fetchLogin = async (body) => {
-    const response = await axios.post(`${URL}/auth/login`, body);
-    console.log('Login response:', response.data); // Verificar la respuesta
-    saveToken(response.data.token); // Guarda el token si es necesario
+export const fetchLogin = async ({ email, password }) => {
+    const response = await axios.post(`${URL}/auth/login`, { email, password });
+    const { token, userId } = response.data; // Suponiendo que la respuesta incluye token y userId
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', userId); // Almacenar el ID del usuario en localStorage
     return response.data;
-}
-
+};
 
 export const fetchRegister = async (body) => {
     const response = await axios.post(`${URL}/auth/register`, body);
     return response.data;
 }
 
-// Las demás funciones deben incluir el token en los encabezados de las solicitudes
-
 export const fetchScooters = async () => {
     const token = localStorage.getItem('token');
-    console.log('Token from localStorage:', token); // Verificar si el token está presente
+    console.log('Token from localStorage:', token);
     if (!token) {
         throw new Error('No token found');
     }
@@ -37,6 +33,7 @@ export const fetchScooters = async () => {
     });
     return response.data;
 }
+
 export const createScooter = async (body) => {
     const token = localStorage.getItem('token');
     const response = await axios.post(`${URL}/scooters`, body, {
@@ -46,7 +43,6 @@ export const createScooter = async (body) => {
     });
     return response.data;
 }
-
 
 export const fetchScooterLocations = async () => {
     const response = await axios.get(`${URL}/scooters/locations`);
@@ -59,8 +55,8 @@ export const fetchUserProfile = async () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
-}
+    return response.data; // Devolver los datos del perfil del usuario
+};
 
 export const updateUserProfile = async (body) => {
     const response = await axios.put(`${URL}/usuarios/profile`, body, {
@@ -70,6 +66,7 @@ export const updateUserProfile = async (body) => {
     });
     return response.data;
 }
+
 export const fetchTripHistory = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
