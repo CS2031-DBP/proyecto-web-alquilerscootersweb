@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { fetchScooters } from '../services/api';
 
+
 const ScooterList = () => {
     const [scooters, setScooters] = useState([]);
 
@@ -12,6 +13,7 @@ const ScooterList = () => {
         const getScooters = async () => {
             try {
                 const data = await fetchScooters();
+                console.log('Scooters data:', data); // Verificar los datos recibidos
                 setScooters(data);
             } catch (error) {
                 console.error('Error fetching scooters:', error);
@@ -24,26 +26,26 @@ const ScooterList = () => {
 
     return (
         <Grid container spacing={3}>
-            {scooters.map((scooter) => (
-                <Grid item key={scooter.id} xs={12} sm={6} md={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Scooter ID: {scooter.id}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                Estado: {scooter.estado}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                Nivel de Batería: {scooter.nivelBateria}%
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                Ubicación Actual: {scooter.ubicacionActual}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            ))}
+            {scooters.length > 0 ? (
+                scooters.map((scooter) => (
+                    <Grid item key={scooter.id} xs={12} sm={6} md={4}>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    {scooter.name}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                    {scooter.status}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))
+            ) : (
+                <Typography variant="h5" component="div">
+                    No scooters available.
+                </Typography>
+            )}
         </Grid>
     );
 };

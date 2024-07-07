@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { fetchUserProfile, updateUserProfile } from '../services/api';
+import React, { useState } from 'react';
+import { updateUsuario } from '../services/api';
 
 const UserProfile = () => {
     const [userData, setUserData] = useState({
-        username: '',
+        nombre: '',
         email: '',
-        fullName: ''
+        telefono: '',
+        fechaRegistro: ''
     });
-
-    useEffect(() => {
-        const getUserData = async () => {
-            try {
-                const data = await fetchUserProfile();
-                setUserData(data);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-        getUserData();
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,8 +16,20 @@ const UserProfile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const userId = localStorage.getItem('userId'); // Suponiendo que el ID del usuario está almacenado en localStorage
+        if (!userId) {
+            console.error('User ID not found');
+            return;
+        }
+
         try {
-            await updateUserProfile(userData);
+            const updatedData = {};
+            if (userData.nombre) updatedData.nombre = userData.nombre;
+            if (userData.email) updatedData.email = userData.email;
+            if (userData.telefono) updatedData.telefono = userData.telefono;
+            if (userData.fechaRegistro) updatedData.fechaRegistro = userData.fechaRegistro;
+
+            await updateUsuario(userId, updatedData);
             alert('Profile updated successfully');
         } catch (error) {
             console.error('Error updating profile:', error);
@@ -39,11 +40,11 @@ const UserProfile = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div>User Profile</div>
-            <label htmlFor="username">Username:
+            <label htmlFor="nombre">Nombre:
                 <input
                     type="text"
-                    name="username"
-                    value={userData.username}
+                    name="nombre"
+                    value={userData.nombre}
                     onChange={handleChange}
                     required
                 />
@@ -57,11 +58,20 @@ const UserProfile = () => {
                     required
                 />
             </label>
-            <label htmlFor="fullName">Full Name:
+            <label htmlFor="telefono">Teléfono:
                 <input
                     type="text"
-                    name="fullName"
-                    value={userData.fullName}
+                    name="telefono"
+                    value={userData.telefono}
+                    onChange={handleChange}
+                    required
+                />
+            </label>
+            <label htmlFor="fechaRegistro">Fecha de Registro:
+                <input
+                    type="date"
+                    name="fechaRegistro"
+                    value={userData.fechaRegistro}
                     onChange={handleChange}
                     required
                 />
