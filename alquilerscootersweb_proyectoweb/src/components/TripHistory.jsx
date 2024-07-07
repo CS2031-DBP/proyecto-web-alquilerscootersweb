@@ -1,34 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { fetchTripHistory } from '../services/api';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const TripHistory = () => {
-    const [trips, setTrips] = useState([]);
+    const [viajes, setViajes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const getTrips = async () => {
+        const fetchViajes = async () => {
+            const userId = localStorage.getItem('userId'); // Obtén el ID del usuario desde localStorage
+            if (!userId) {
+                setError("No se encontró el ID del usuario en localStorage");
+                setLoading(false);
+                return;
+            }
+
             try {
-                const data = await fetchTripHistory();
-                setTrips(data);
+                const response = await axios.get(`http://localhost:8080/viajes/usuario/${userId}`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                setViajes(response.data);
             } catch (error) {
-                console.error('Error fetching trip history:', error);
+                setError(error.response ? error.response.data : "Error fetching data");
+            } finally {
+                setLoading(false);
             }
         };
-        getTrips();
+
+        fetchViajes();
     }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div>
-            <h2>Historial de Viajes</h2>
-            <ul>
-                {trips.map(trip => (
-                    <li key={trip.id}>
-                        <p>ID del Scooter: {trip.scooterId}</p>
-                        <p>Estado del viaje: {trip.isActive ? 'En uso' : 'Culminado'}</p>
-                        <p>Nivel de batería: {trip.batteryLevel}%</p>
-                        <p>Detalles del viaje: {trip.details}</p>
-                    </li>
-                ))}
-            </ul>
+            <h1>Historial de Viajes</h1>
+            {viajes.length === 0 ? (
+                <p>No hay viajes registrados.</p>
+            ) : (
+                <ul>
+                    {viajes.map(viaje => (
+                        <li key={viaje.id}>
+                            <p>Inicio: {viaje.horaInicio}</p>
+                            <p>Fin: {viaje.horaFin}</p>
+                            <p>Partida: {viaje.puntoPartida}</p>
+                            <p>Destino: {viaje.puntoFin}</p>
+                            <p>Costo: {viaje.costo}</p>
+                            <p>Estado: {viaje.estado}</p>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
