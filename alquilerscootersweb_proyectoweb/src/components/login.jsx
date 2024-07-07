@@ -10,10 +10,13 @@ const Login = ({ onLogin }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetchLogin({ password, email});
+            const response = await fetchLogin({ password, email });
+            console.log('Login successful, token:', response.token);
             alert('Login successful');
-            onLogin(response.access_token);
-            navigate('/scooters');  // Redirigir a ScooterList después del inicio de sesión exitoso
+            onLogin(response.token);
+            localStorage.setItem('token', response.token);  // Asegúrate de guardar el token
+            console.log('Token saved in localStorage:', localStorage.getItem('token'));  // Verificar que se guardó
+            navigate('/scooters'); // Redirigir a ScooterList después del inicio de sesión exitoso
         } catch (error) {
             console.error('Login failed', error);
             alert('Login failed');

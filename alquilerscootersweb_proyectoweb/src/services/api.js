@@ -4,15 +4,18 @@ import axios from 'axios';
 const URL = "http://localhost:8080";
 
 function saveToken(token) {
+    console.log('Saving token:', token);
     localStorage.setItem('token', token);
-    console.log(token);
 }
+
 
 export const fetchLogin = async (body) => {
     const response = await axios.post(`${URL}/auth/login`, body);
-    saveToken(response.data.access_token); // Guarda el token si es necesario
+    console.log('Login response:', response.data); // Verificar la respuesta
+    saveToken(response.data.token); // Guarda el token si es necesario
     return response.data;
 }
+
 
 
 export const fetchRegister = async (body) => {
@@ -20,8 +23,18 @@ export const fetchRegister = async (body) => {
     return response.data;
 }
 
+// Las demás funciones deben incluir el token en los encabezados de las solicitudes
 export const fetchScooters = async () => {
-    const response = await axios.get(`${URL}/scooters`);
+    const token = localStorage.getItem('token');
+    console.log('Token from localStorage:', token); // Verificar si el token está presente
+    if (!token) {
+        throw new Error('No token found');
+    }
+    const response = await axios.get(`${URL}/scooters`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     return response.data;
 }
 

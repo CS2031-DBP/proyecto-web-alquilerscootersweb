@@ -10,8 +10,13 @@ const ScooterList = () => {
 
     useEffect(() => {
         const getScooters = async () => {
-            const data = await fetchScooters();
-            setScooters(data);
+            try {
+                const data = await fetchScooters();
+                setScooters(data);
+            } catch (error) {
+                console.error('Error fetching scooters:', error);
+                alert('Failed to fetch scooters. Please make sure you are logged in.');
+            }
         };
 
         getScooters();
