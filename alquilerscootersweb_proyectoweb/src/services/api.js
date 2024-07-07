@@ -17,13 +17,13 @@ export const fetchLogin = async (body) => {
 }
 
 
-
 export const fetchRegister = async (body) => {
     const response = await axios.post(`${URL}/auth/register`, body);
     return response.data;
 }
 
 // Las demás funciones deben incluir el token en los encabezados de las solicitudes
+
 export const fetchScooters = async () => {
     const token = localStorage.getItem('token');
     console.log('Token from localStorage:', token); // Verificar si el token está presente
@@ -37,6 +37,16 @@ export const fetchScooters = async () => {
     });
     return response.data;
 }
+export const createScooter = async (body) => {
+    const token = localStorage.getItem('token');
+    const response = await axios.post(`${URL}/scooters`, body, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+}
+
 
 export const fetchScooterLocations = async () => {
     const response = await axios.get(`${URL}/scooters/locations`);
@@ -61,9 +71,13 @@ export const updateUserProfile = async (body) => {
     return response.data;
 }
 export const fetchTripHistory = async () => {
-    const response = await axios.get(`${URL}/user/trips`, {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        throw new Error('No token found');
+    }
+    const response = await axios.get(`${URL}/viajes/usuario`, {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${token}`
         }
     });
     return response.data;

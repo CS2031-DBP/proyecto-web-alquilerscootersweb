@@ -29,10 +29,16 @@ const ScooterList = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="div">
-                                {scooter.name}
+                                Scooter ID: {scooter.id}
                             </Typography>
                             <Typography variant="body2" color="textSecondary">
-                                {scooter.status}
+                                Estado: {scooter.estado}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary">
+                                Nivel de Batería: {scooter.nivelBateria}%
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary">
+                                Ubicación Actual: {scooter.ubicacionActual}
                             </Typography>
                         </CardContent>
                     </Card>
