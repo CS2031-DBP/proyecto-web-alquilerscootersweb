@@ -4,7 +4,7 @@ import { fetchScooters } from '../services/api'; // Asegúrate de que la ruta al
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import PropTypes from 'prop-types';
-import './ScooterMap.css'; // Asegúrate de tener un archivo CSS para los estiloss
+import './ScooterMap.css'; // Asegúrate de tener un archivo CSS para los estilosss
 
 // Icono personalizado para scooterss
 const scooterIcon = new L.Icon({
