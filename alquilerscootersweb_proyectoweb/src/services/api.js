@@ -26,7 +26,7 @@ export const fetchScooters = async () => {
     if (!token) {
         throw new Error('No token found');
     }
-    const response = await axios.get(`${URL}/scooters`, {
+    const response = await axios.get(`${URL}/auth/disponibles`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
