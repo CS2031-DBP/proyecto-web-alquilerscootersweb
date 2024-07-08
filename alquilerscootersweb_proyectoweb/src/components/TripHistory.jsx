@@ -8,7 +8,7 @@ const TripHistory = () => {
 
     useEffect(() => {
         const fetchViajes = async () => {
-            const userId = localStorage.getItem('userId'); // Obtén el ID del usuario desde localStorage
+            const userId = localStorage.getItem('userId'); // Obtén ell ID del usuario desde localStorage
             if (!userId) {
                 setError("No se encontró el ID del usuario en localStorage");
                 setLoading(false);
