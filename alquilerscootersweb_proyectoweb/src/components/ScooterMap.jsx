@@ -6,7 +6,7 @@ import L from 'leaflet';
 import PropTypes from 'prop-types';
 import './ScooterMap.css'; // Asegúrate de tener un archivo CSS para los estilos
 
-// Icono personalizado para scooters
+// Icono personalizado para scooterss
 const scooterIcon = new L.Icon({
     iconUrl: 'https://cdn-icons-png.freepik.com/512/1553/1553985.png', // Cambia esta URL por la de tu nueva imagen
     iconSize: [25, 41],
