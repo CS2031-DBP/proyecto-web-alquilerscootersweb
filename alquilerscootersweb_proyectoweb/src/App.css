@@ -1,4 +1,4 @@
-/* Estilo general */
+/* General */
 body, html {
   background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
   color: #343a40;
@@ -12,147 +12,160 @@ body, html {
   align-items: center;
 }
 
-/* Contenedor principal */
 #root {
   height: 100%;
   width: 100%;
 }
 
 /* NavBar */
-.MuiAppBar-root {
-  background: linear-gradient(135deg, #aed581, #81c784); /* Gradiente de verde limón y verde pastel */
+.navbar {
+  background: linear-gradient(135deg, #4fc3f7, #81d4fa);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.MuiToolbar-root {
+.navbar-toolbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
-.MuiTypography-h6 {
-  font-weight: bold;
+.navbar-title {
   font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff; /* Color blanco para el título */
 }
 
-.MuiButton-root {
-  color: #ffffff;
-  margin: 0 15px;
+.navbar-spacer {
+  flex-grow: 1;
+}
+
+.navbar-button {
+  margin-left: 15px;
+  font-size: 1rem;
   font-weight: bold;
+  color: white;
+  text-transform: uppercase;
   transition: transform 0.2s;
 }
 
-.MuiButton-root:hover {
+.navbar-button:hover {
   transform: scale(1.1);
+  color: #e0f7fa;
 }
 
-/* Estilo del formulario de Login */
-form {
-  background-color: #f0f4c3;
+/* Contenedor general para login y registro */
+.login-container, .register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Contenido del formulario */
+.login-content, .register-content {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  max-width: 450px;
+  max-width: 900px;
   width: 100%;
-  margin: 20px auto;
+  margin: 20px;
   text-align: center;
   transition: transform 0.3s;
 }
 
-form:hover {
+.login-content:hover, .register-content:hover {
   transform: scale(1.05);
 }
 
-form div {
-  font-size: 1.8rem;
+/* Estilos del formulario */
+form {
+  flex: 1;
+  margin-right: 20px;
+}
+
+form h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #4fc3f7;
+}
+
+form p {
+  font-size: 1rem;
+  color: #6c757d;
   margin-bottom: 20px;
 }
 
 label {
   display: block;
   margin-bottom: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #6c757d;
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"],
-input[type="email"] {
-  width: calc(100% - 22px);
+input[type="text"] {
+  width: calc(100% - 24px);
   padding: 12px;
   margin-bottom: 20px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #dcedc8;
+  background-color: #e3f2fd;
   color: #343a40;
-  font-size: 1.1rem;
-  transition: background-color 0.3s, transform 0.3s;
+  font-size: 1rem;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
 }
 
-input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus,
-input[type="email"]:focus {
-  background-color: #c5e1a5;
+input[type="text"]:focus {
+  background-color: #bbdefb;
+  border-color: #64b5f6;
   transform: scale(1.02);
 }
 
 button[type="submit"] {
-  padding: 12px 25px;
-  background: linear-gradient(135deg, #aed581, #81c784);
+  padding: 12px;
+  background: linear-gradient(135deg, #4fc3f7, #29b6f6);
   border: none;
   border-radius: 8px;
   color: #ffffff;
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
+  width: 100%;
 }
 
 button[type="submit"]:hover {
-  background-color: #9ccc65;
+  background-color: #03a9f4;
   transform: scale(1.05);
 }
 
-/* Estilo de la lista de scooters */
-.MuiGrid-container {
-  padding: 20px;
-  justify-content: center;
+/* Estilos de la imagen y las frases */
+.login-image, .register-image {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.MuiCard-root {
-  background-color: #ffffff; /* Fondo blanco para las tarjetas */
-  border: 1px solid #dddddd;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, background-color 0.3s;
-  color: #343a40; /* Color de texto oscuro */
+.login-image img, .register-image img {
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 20px;
 }
 
-.MuiCard-root:hover {
-  background-color: #dcedc8;
-  transform: scale(1.05);
-}
-
-.MuiCardContent-root {
-  text-align: center;
-}
-
-.MuiTypography-h5 {
-  color: #81c784;
-  font-weight: bold;
-}
-
-.MuiTypography-body2 {
+.login-image p, .register-image p {
+  font-size: 1rem;
   color: #6c757d;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.MuiCard-root {
-  animation: fadeIn 0.5s ease-in;
+  text-align: center;
+  margin-top: 10px;
 }

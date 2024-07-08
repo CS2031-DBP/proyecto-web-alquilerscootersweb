@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchRegister } from '../services/api';
+import './App.css'; // Importamos el archivo CSS principal
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -26,46 +27,47 @@ const Register = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>Register</div>
-            <label htmlFor='email'>Email:
-                <input
-                    type='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </label>
-            <br />
-            <label htmlFor='name'>Full Name:
-                <input
-                    type='text'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-            </label>
-            <br />
-            <label htmlFor='password'>Password:
-                <input
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <br />
-            <label htmlFor='phone'>Phone:
-                <input
-                    type='text'
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-        </form>
+        <div className="register-container">
+            <div className="register-content">
+                <div className="register-image">
+                    <img src="/mnt/data/image.png" alt="ScootSmart Logo" />
+                    <p>"Muévete libremente, muévete con ScootSmart"</p>
+                    <p>"El futuro de la movilidad está a un clic de distancia"</p>
+                </div>
+                <form className="register-form" onSubmit={handleSubmit}>
+                    <h2>Regístrate</h2>
+                    <label htmlFor='email'>Correo Electrónico:</label>
+                    <input
+                        type='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label htmlFor='name'>Nombre Completo:</label>
+                    <input
+                        type='text'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                    <label htmlFor='password'>Contraseña:</label>
+                    <input
+                        type='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <label htmlFor='phone'>Teléfono:</label>
+                    <input
+                        type='text'
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Registrarse</button>
+                </form>
+            </div>
+        </div>
     );
 }
 

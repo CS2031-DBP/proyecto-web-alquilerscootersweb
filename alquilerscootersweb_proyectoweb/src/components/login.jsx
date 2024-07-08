@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../services/api';
+import logo from './logo.jpg'; // Asegúrate de que la ruta sea correcta.
 
 const Login = ({ onLogin }) => {
     const [password, setPassword] = useState('');
@@ -11,41 +12,44 @@ const Login = ({ onLogin }) => {
         e.preventDefault();
         try {
             const response = await fetchLogin({ password, email });
-            console.log('Login successful, token:', response.token);
             alert('Login successful');
             onLogin(response.token);
-            localStorage.setItem('token', response.token);  // Asegúrate de guardar el token
-            console.log('Token saved in localStorage:', localStorage.getItem('token'));  // Verificar que se guardó
-            navigate('/scooters'); // Redirigir a ScooterList después del inicio de sesión exitoso
+            localStorage.setItem('token', response.token);
+            navigate('/scooters');
         } catch (error) {
-            console.error('Login failed', error);
             alert('Login failed');
         }
-    }
+    };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>Login</div>
-            <label htmlFor='email'>Email:
-                <input
-                    type='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </label>
-            <br/>
-            <label htmlFor='password'>Password:
-                <input
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
+        <div className="login-container">
+            <div className="login-content">
+                <form onSubmit={handleSubmit}>
+                    <h2>Welcome Back!</h2>
+                    <p>Login to rent your favorite scooters in no time.</p>
+                    <label htmlFor='email'>Email:</label>
+                    <input
+                        type='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label htmlFor='password'>Password:</label>
+                    <input
+                        type='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Login</button>
+                </form>
+                <div className="login-image">
+                    <img src={logo} alt="Scooter Logo" />
+                    <p>Register to get access to the best scooters in the city!</p>
+                    <p>Fast, convenient, and eco-friendly. Join us today!</p>
+                </div>
+            </div>
+        </div>
     );
 }
 

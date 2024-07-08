@@ -5,8 +5,7 @@ const UserProfile = () => {
     const [userData, setUserData] = useState({
         nombre: '',
         email: '',
-        telefono: '',
-        fechaRegistro: ''
+        telefono: ''
     });
 
     const handleChange = (e) => {
@@ -27,7 +26,6 @@ const UserProfile = () => {
             if (userData.nombre) updatedData.nombre = userData.nombre;
             if (userData.email) updatedData.email = userData.email;
             if (userData.telefono) updatedData.telefono = userData.telefono;
-            if (userData.fechaRegistro) updatedData.fechaRegistro = userData.fechaRegistro;
 
             await updateUsuario(userId, updatedData);
             alert('Profile updated successfully');
@@ -63,15 +61,6 @@ const UserProfile = () => {
                     type="text"
                     name="telefono"
                     value={userData.telefono}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label htmlFor="fechaRegistro">Fecha de Registro:
-                <input
-                    type="date"
-                    name="fechaRegistro"
-                    value={userData.fechaRegistro}
                     onChange={handleChange}
                     required
                 />
