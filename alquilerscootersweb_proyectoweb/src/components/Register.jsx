@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchRegister } from '../services/api';
+import '../Register.css';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -15,19 +16,18 @@ const Register = () => {
                 name,
                 password,
                 phone,
-                role: 'USER' // Asignamos el rol directamente
+                role: 'USER'
             });
             alert('Register successful');
             console.log(response);
         } catch (error) {
-            console.error('Register failed', error);
             alert('Register failed');
         }
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>Register</div>
+        <form className="register-form" onSubmit={handleSubmit}>
+            <h2>Register</h2>
             <label htmlFor='email'>Email:
                 <input
                     type='email'
@@ -36,7 +36,6 @@ const Register = () => {
                     required
                 />
             </label>
-            <br />
             <label htmlFor='name'>Full Name:
                 <input
                     type='text'
@@ -45,7 +44,6 @@ const Register = () => {
                     required
                 />
             </label>
-            <br />
             <label htmlFor='password'>Password:
                 <input
                     type='password'
@@ -54,7 +52,6 @@ const Register = () => {
                     required
                 />
             </label>
-            <br />
             <label htmlFor='phone'>Phone:
                 <input
                     type='text'
@@ -63,7 +60,6 @@ const Register = () => {
                     required
                 />
             </label>
-            <br />
             <button type="submit">Submit</button>
         </form>
     );

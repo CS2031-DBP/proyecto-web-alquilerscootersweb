@@ -1,34 +1,29 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import '../NavBar.css';
 
 const NavBar = ({ isAuthenticated, handleLogout }) => {
     return (
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h6" component="div">
-                    ScootSmart
-                </Typography>
-                <div style={{ flexGrow: 1 }} />
+        <nav className="navbar">
+            <div className="navbar-logo">Easyscooter</div>
+            <div className="navbar-links">
+                <Link className="nav-link" to="/">Inicio</Link>
                 {!isAuthenticated ? (
                     <>
-                        <Button color="inherit" component={Link} to="/login">Login</Button>
-                        <Button color="inherit" component={Link} to="/register">Register</Button>
+                        <Link className="nav-link" to="/login">Login</Link>
+                        <Link className="nav-link" to="/register">Register</Link>
                     </>
                 ) : (
                     <>
-                        <Button color="inherit" component={Link} to="/scooters">Scooters</Button>
-                        <Button color="inherit" component={Link} to="/map">Scooter Map</Button>
-                        <Button color="inherit" component={Link} to="/profile">Profile</Button>
-                        <Button color="inherit" component={Link} to="/trips">Trip History</Button>
-                        <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                        <Link className="nav-link" to="/scooters">Scooters</Link>
+                        <Link className="nav-link" to="/map">Scooter Map</Link>
+                        <Link className="nav-link" to="/profile">Profile</Link>
+                        <Link className="nav-link" to="/trips">Trip History</Link>
+                        <button className="nav-link logout-button" onClick={handleLogout}>Logout</button>
                     </>
                 )}
-            </Toolbar>
-        </AppBar>
+            </div>
+        </nav>
     );
 };
 

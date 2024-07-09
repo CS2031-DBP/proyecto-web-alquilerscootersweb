@@ -1,0 +1,53 @@
+/* Estilos para la sección de bienvenida */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5% 10%;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 40px); /* Ajuste de 20px de padding a cada lado */
+    max-width: 1440px;
+    margin: 0; /* Añadir margen superior e inferior */
+    border-radius: 8px;
+    text-align: center;
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.welcome-text, .welcome-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.welcome-image {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.info-section {
+    margin-bottom: 20px;
+}
+
+.prices-button, .home-button, .login-form button, .register-form button {
+    margin-top: 20px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.prices-button:hover, .home-button:hover, .login-form button:hover, .register-form button:hover {
+    background-color: #333;
+}
