@@ -1,0 +1,35 @@
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content > * {
+    margin-bottom: 10px;
+}
+
+.typography-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+}
+
+.typography-secondary {
+    font-size: 1em;
+    color: #666;
+}
+
+.attribute {
+    display: flex;
+    align-items: center;
+}
+
+.attribute-icon {
+    margin-right: 5px;
+    font-size: 1.2em;
+    color: #333;
+}

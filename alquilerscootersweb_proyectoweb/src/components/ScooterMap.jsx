@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { fetchScooters } from '../services/api'; // Asegúrate de que la ruta al archivo sea correcta
+import { fetchScooters } from '../services/api';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import PropTypes from 'prop-types';
-import './ScooterMap.css'; // Asegúrate de tener un archivo CSS para los estilosss
+import '../ScooterMap.css'; // Importar el archivo CSS para los estilos
 
-// Icono personalizado para scooterss
+// Icono personalizado para scooters
 const scooterIcon = new L.Icon({
-    iconUrl: 'https://cdn-icons-png.freepik.com/512/1553/1553985.png', // Cambia esta URL por la de tu nueva imagen
+    iconUrl: 'https://cdn-icons-png.freepik.com/512/1553/1553985.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
 });
@@ -41,7 +41,6 @@ const ScooterMap = () => {
                         id: scooter.id,
                         lat,
                         lng,
-                        name: scooter.name, // Asegúrate de que 'name' esté disponible en el objeto scooter
                         status: scooter.estado,
                         batteryLevel: scooter.nivelBateria
                     };
@@ -90,7 +89,7 @@ const ScooterMap = () => {
     const defaultCenter = userLocation ? [userLocation.lat, userLocation.lng] : [51.505, -0.09];
 
     return (
-        <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+        <div className="map-container">
             <MapContainer
                 center={defaultCenter}
                 zoom={13}

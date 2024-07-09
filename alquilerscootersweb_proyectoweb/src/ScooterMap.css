@@ -1,0 +1,49 @@
+/* ScooterMap.css */
+
+/* Estilos para el botón de localización */
+.locate-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.locate-button:hover {
+    background-color: #333;
+}
+
+/* Estilos para el contenedor del mapa */
+.map-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Estilos para la tarjeta de Popup */
+.leaflet-popup-content-wrapper {
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-content {
+    padding: 10px;
+}
+
+/* Estilos para el texto dentro del Popup */
+.leaflet-popup-content p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+/* Estilos para el icono de scooter */
+.marker-icon {
+    width: 25px;
+    height: 41px;
+}

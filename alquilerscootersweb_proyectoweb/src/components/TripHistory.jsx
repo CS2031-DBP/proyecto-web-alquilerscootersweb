@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Typography } from '@mui/material';
+import { AccessTime as AccessTimeIcon, CheckCircle as CheckCircleIcon, LocationOn as LocationOnIcon, MonetizationOn as MonetizationOnIcon, Room as RoomIcon } from '@mui/icons-material';
+import '../TripHistory.css';
 
 const TripHistory = () => {
     const [viajes, setViajes] = useState([]);
@@ -41,20 +44,32 @@ const TripHistory = () => {
     }
 
     return (
-        <div>
-            <h1>Historial de Viajes</h1>
+        <div className="trip-history-container">
+            <Typography variant="h5">Historial de Viajes</Typography>
             {viajes.length === 0 ? (
                 <p>No hay viajes registrados.</p>
             ) : (
-                <ul>
+                <ul className="trip-list">
                     {viajes.map(viaje => (
-                        <li key={viaje.id}>
-                            <p>Inicio: {viaje.horaInicio}</p>
-                            <p>Fin: {viaje.horaFin}</p>
-                            <p>Partida: {viaje.puntoPartida}</p>
-                            <p>Destino: {viaje.puntoFin}</p>
-                            <p>Costo: {viaje.costo}</p>
-                            <p>Estado: {viaje.estado}</p>
+                        <li key={viaje.id} className="trip-item">
+                            <Typography variant="body1">
+                                <AccessTimeIcon /> <strong>Inicio:</strong> {viaje.horaInicio}
+                            </Typography>
+                            <Typography variant="body1">
+                                <AccessTimeIcon /> <strong>Fin:</strong> {viaje.horaFin}
+                            </Typography>
+                            <Typography variant="body1">
+                                <LocationOnIcon /> <strong>Partida:</strong> {viaje.puntoPartida}
+                            </Typography>
+                            <Typography variant="body1">
+                                <LocationOnIcon /> <strong>Destino:</strong> {viaje.puntoFin}
+                            </Typography>
+                            <Typography variant="body1">
+                                <MonetizationOnIcon /> <strong>Costo:</strong> {viaje.costo}
+                            </Typography>
+                            <Typography variant="body1">
+                                <CheckCircleIcon /> <strong>Estado:</strong> {viaje.estado}
+                            </Typography>
                         </li>
                     ))}
                 </ul>

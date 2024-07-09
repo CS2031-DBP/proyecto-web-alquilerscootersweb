@@ -1,0 +1,35 @@
+.trip-history-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.trip-history-container h5 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold; /* Estilo de letra en negrita */
+    color: #000; /* Color de texto negro */
+}
+
+.trip-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.trip-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.trip-item p {
+    margin: 5px 0;
+    font-weight: bold; /* Estilo de letra en negrita */
+    color: #000; /* Color de texto negro */
+}

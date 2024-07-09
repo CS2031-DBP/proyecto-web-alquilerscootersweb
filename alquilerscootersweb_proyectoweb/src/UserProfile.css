@@ -1,0 +1,44 @@
+/* UserProfile.css */
+
+/* Estilos para el formulario del perfil de usuario */
+.user-profile-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile-form div {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.user-profile-form label {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.user-profile-form input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-profile-form button {
+    padding: 10px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.user-profile-form button:hover {
+    background-color: #333;
+}
