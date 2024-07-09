@@ -1,26 +1,71 @@
-/* Estilos para los formularios de login y registro */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.register-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.register-image {
+    width: 30%;  /* Ajustando el tamaño de la imagen */
+    max-width: 200px;
+    margin-right: 20px;  /* Añadiendo margen derecho para separar la imagen del formulario */
+}
+
 .register-form {
-    max-width: 400px;
-    margin: 50px auto;
+    flex: 1;  /* El formulario ocupa el espacio restante */
+    background-color: #fff;
     padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;  /* Añadiendo margen izquierdo para separar el formulario de la imagen */
 }
 
 .register-form h2 {
     margin-bottom: 20px;
+    color: #000;
 }
 
 .register-form label {
-    display: block;
     margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
 }
 
 .register-form input {
-    width: 100%;
-    padding: 8px;
     margin-bottom: 20px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    width: 100%;  /* Ajustando el ancho del input */
+}
+
+.input-with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    margin-right: 10px;
+}
+
+.register-form button {
+    padding: 10px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.register-form button:hover {
+    background-color: #333;
 }
