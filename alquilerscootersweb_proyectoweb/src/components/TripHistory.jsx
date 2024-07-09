@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Typography } from '@mui/material';
-import { AccessTime as AccessTimeIcon, CheckCircle as CheckCircleIcon, LocationOn as LocationOnIcon, MonetizationOn as MonetizationOnIcon, Room as RoomIcon } from '@mui/icons-material';
+import { AccessTime as AccessTimeIcon, CheckCircle as CheckCircleIcon, LocationOn as LocationOnIcon, MonetizationOn as MonetizationOnIcon } from '@mui/icons-material';
 import '../TripHistory.css';
+import ErrorMessage from './ErrorMessage';
 
 const TripHistory = () => {
     const [viajes, setViajes] = useState([]);
@@ -11,7 +12,7 @@ const TripHistory = () => {
 
     useEffect(() => {
         const fetchViajes = async () => {
-            const userId = localStorage.getItem('userId'); // Obtén ell ID del usuario desde localStorage
+            const userId = localStorage.getItem('userId'); // Obtén el ID del usuario desde localStorage
             if (!userId) {
                 setError("No se encontró el ID del usuario en localStorage");
                 setLoading(false);
@@ -39,15 +40,16 @@ const TripHistory = () => {
         return <div>Loading...</div>;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
     return (
         <div className="trip-history-container">
             <Typography variant="h5">Historial de Viajes</Typography>
-            {viajes.length === 0 ? (
-                <p>No hay viajes registrados.</p>
+            {error && <ErrorMessage message={error} />}
+            {viajes.length === 0 && !error ? (
+                <div className="no-viajes">
+                    <Typography variant="h6" component="p">
+                        No hay viajes registrados.
+                    </Typography>
+                </div>
             ) : (
                 <ul className="trip-list">
                     {viajes.map(viaje => (

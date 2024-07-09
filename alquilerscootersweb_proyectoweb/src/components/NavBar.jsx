@@ -1,3 +1,4 @@
+// NavBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../NavBar.css';
@@ -7,7 +8,9 @@ const NavBar = ({ isAuthenticated, handleLogout }) => {
         <nav className="navbar">
             <div className="navbar-logo">EasyScooter</div>
             <div className="navbar-links">
-                <Link className="nav-link" to="/">Inicio</Link>
+                {!isAuthenticated && (
+                    <Link className="nav-link" to="/">Inicio</Link>
+                )}
                 {!isAuthenticated ? (
                     <>
                         <Link className="nav-link" to="/login">Login</Link>

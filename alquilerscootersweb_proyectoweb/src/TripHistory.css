@@ -33,3 +33,11 @@
     font-weight: bold; /* Estilo de letra en negrita */
     color: #000; /* Color de texto negro */
 }
+
+/* TripHistory.css */
+.no-viajes {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: red;
+}

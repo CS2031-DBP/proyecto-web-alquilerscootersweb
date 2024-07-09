@@ -9,3 +9,20 @@
     text-align: center;
     font-size: 14px;
 }
+
+/* ErrorMessage.css */
+.error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: red;
+}
+
+.error-icon {
+    margin-right: 8px;
+}
+
+.error-text {
+    font-weight: bold;
+}

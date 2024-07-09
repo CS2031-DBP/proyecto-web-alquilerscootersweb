@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import NavBar from './components/NavBar';
 import Welcome from './components/Welcome';
@@ -12,6 +12,13 @@ import './App.css';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsAuthenticated(true);
+        }
+    }, []);
 
     const handleLogin = (token) => {
         localStorage.setItem('token', token);
@@ -28,7 +35,7 @@ const App = () => {
             <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
             <div className="container">
                 <Routes>
-                    <Route path="/" element={!isAuthenticated ? <Welcome /> : <Navigate to="/scooters" />} />
+                    <Route path="/" element={<Welcome />} />
                     <Route path="/login" element={!isAuthenticated ? <Login onLogin={handleLogin} /> : <Navigate to="/scooters" />} />
                     <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/scooters" />} />
                     <Route path="/scooters" element={isAuthenticated ? <ScooterList /> : <Navigate to="/login" />} />

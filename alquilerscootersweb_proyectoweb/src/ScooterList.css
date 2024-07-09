@@ -33,3 +33,19 @@
     font-size: 1.2em;
     color: #333;
 }
+
+.no-scooters-message {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-scooters-icon {
+    color: black;
+    font-size: 50px;
+}
+
+.no-scooters-text {
+    font-weight: bold;
+    color: black;
+    margin-top: 10px;
+}
