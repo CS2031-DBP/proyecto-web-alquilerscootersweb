@@ -5,7 +5,7 @@ import '../NavBar.css';
 const NavBar = ({ isAuthenticated, handleLogout }) => {
     return (
         <nav className="navbar">
-            <div className="navbar-logo">Easyscooter</div>
+            <div className="navbar-logo">EasyScooter</div>
             <div className="navbar-links">
                 <Link className="nav-link" to="/">Inicio</Link>
                 {!isAuthenticated ? (

@@ -1,25 +1,31 @@
+// Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../services/api';
 import '../Login.css';
-import loginImage from '../assets/loginn.jpg';  // Cambiando al nuevo nombre de imagen
-import { Email as EmailIcon, VpnKey as VpnKeyIcon } from '@mui/icons-material';  // Importando los iconos necesarios
+import loginImage from '../assets/loginn.jpg';
+import { Email as EmailIcon, VpnKey as VpnKeyIcon } from '@mui/icons-material';
+import ErrorMessage from './ErrorMessage'; // Importar el componente de mensaje de error
 
 const Login = ({ onLogin }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState(''); // Estado para el mensaje de error
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await fetchLogin({ password, email });
-            alert('Login successful');
             onLogin(response.token);
             localStorage.setItem('token', response.token);
             navigate('/scooters');
         } catch (error) {
-            alert('Login failed');
+            if (error.response && error.response.status === 400) {
+                setError('Email or password is incorrect. Please try again.');
+            } else {
+                setError('Login failed. Please try again later.');
+            }
         }
     }
 
@@ -28,6 +34,7 @@ const Login = ({ onLogin }) => {
             <div className="login-content">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <h2>Login</h2>
+                    {error && <ErrorMessage message={error} />} {/* Mostrar mensaje de error */}
                     <label htmlFor='email'>Email:
                         <div className="input-with-icon">
                             <EmailIcon className="input-icon" />
@@ -52,7 +59,7 @@ const Login = ({ onLogin }) => {
                     </label>
                     <button type="submit">Submit</button>
                 </form>
-                <img src={loginImage} alt="Login Image" className="login-image" />  {/* Cambiando la imagen */}
+                <img src={loginImage} alt="Login Image" className="login-image" />
             </div>
         </div>
     );
